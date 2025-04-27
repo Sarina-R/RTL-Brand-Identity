@@ -184,6 +184,75 @@ const DesignPrinciples = `
       </div>
     </div>`;
 
+const IdentityInUse = `<div className=" px-6 py-12 space-y-12">
+  <section>
+    <h2 className="text-2xl font-semibold mb-4">پست اینستاگرام</h2>
+    <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(19).png" alt="Post 1" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(18).png" alt="Post 2" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(19).png" alt="Post 3" className="w-full " />
+    </div>
+  </section>
+
+  <section>
+    <h2 className="text-2xl font-semibold mb-4">استوری اینستاگرام</h2>
+    <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(20).png" alt="Story 1" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(21).png" alt="Story 2" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(22).png" alt="Story 3" className="w-full " />
+    </div>
+  </section>
+
+  <section>
+    <h2 className="text-2xl font-semibold mb-4">فرمت و سایز</h2>
+    <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(23).png" alt="Story Size" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(24).png" alt="Poster Size" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(25).png" alt="Post Size" className="w-full " />
+    </div>
+  </section>
+
+  <section>
+    <h2 className="text-2xl font-semibold mb-4">پرچم‌ها و پوسترها</h2>
+    <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(26).png" alt="Flag 1" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(27).png" alt="Flag 2" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(28).png" alt="Flag 3" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(29).png" alt="City 1" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(30).png" alt="City 2" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(31).png" alt="City 3" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(32).png" alt="City 4" className="w-full " />
+    </div>
+  </section>
+
+  <section>
+    <h2 className="text-2xl font-semibold mb-4">ماگ و تیشرت</h2>
+    <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(33).png" alt="T-shirt" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(34).png" alt="Mug" className="w-full " />
+    </div>
+  </section>
+
+  <section>
+    <h2 className="text-2xl font-semibold mb-4">کارت شناسایی</h2>
+    <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(35).png" alt="ID Back" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(36).png" alt="ID Front" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(37).png" alt="ID Ribbon 1" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(38).png" alt="ID Ribbon 2" className="w-full " />
+    </div>
+  </section>
+
+  <section>
+    <h2 className="text-2xl font-semibold mb-4">گواهینامه‌ها</h2>
+    <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(39).png" alt="Certificate 1" className="w-full " />
+      <Image width="600" height="400" src="https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/in%20use/Copy%20of%20FIRA%20CUP%202025%20BRAND%20BOOK%20(40).png" alt="Certificate 2" className="w-full " />
+    </div>
+  </section>
+        </div>
+`;
+
 const data = {
   ir: {
     brand: {
@@ -193,7 +262,8 @@ const data = {
       darkLogo:
         "https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi//dark-logo.png",
       font: {
-        name: "Noto Sans Arabic",
+        name: "https://db.onlinewebfonts.com/c/eba1f76fb362790bbfa2f7a343904394?family=KalamehWebFaNum",
+        headers: "https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic",
         weights: [400, 500, 700],
         subsets: ["latin", "latin-ext"],
       },
@@ -786,7 +856,7 @@ const data = {
           "https://cdn.alibaba.ir/cms/uploads/hero_statement_d_d44dbb0315.svg",
         img: "",
         items: {
-          // MDXComponent: IdentityInUse,
+          MDXComponent: IdentityInUse,
         },
       },
     ],

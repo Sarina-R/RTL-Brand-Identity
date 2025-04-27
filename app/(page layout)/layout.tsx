@@ -7,10 +7,10 @@ import { useMDXComponents1 } from "@/mdx-component";
 import { useData } from "@/hooks/DataProvider";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Font } from "@/app/type";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { FontProvider } from "@/hooks/FontProvider";
+import { Font } from "../type";
 
 export default function RootLayout({
   children,
@@ -20,35 +20,55 @@ export default function RootLayout({
   const { data, loading } = useData();
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter(Boolean);
-  const localePrefix = pathSegments[0];
+  const localePrefix = pathSegments[0] || "ir";
   const mdxComponents = useMDXComponents1({});
 
   const font: Font | undefined = data?.brand?.font;
-  const fontFamily = font?.name ?? "Roboto";
-  const headerFontFamily = font?.headers ?? fontFamily;
+
+  const parseFontFamily = (fontName: string | undefined): string => {
+    if (!fontName) return "Roboto";
+    if (fontName.startsWith("http://") || fontName.startsWith("https://")) {
+      const url = new URL(fontName);
+      const family = url.searchParams.get("family") || "KalamehWebFaNum";
+      return family;
+    }
+    return fontName;
+  };
+
+  const fontFamily = parseFontFamily(font?.name);
   const weights = font?.weights?.join(";") ?? "400;700";
-  const subsets = font?.subsets?.join(",") ?? "latin";
+  const subsets = font?.subsets?.join(",") ?? "arabic";
 
   useEffect(() => {
     if (!font?.name) return;
 
-    const loadFont = (fontName: string) => {
-      const formatted = fontName.replace(/\s+/g, "+");
-      const url = `https://fonts.googleapis.com/css2?family=${formatted}:wght@${weights}&subset=${subsets}&display=swap`;
+    const loadFont = (fontName: string, isHeader = false) => {
+      let fontUrl: string;
 
-      if (!document.querySelector(`link[href="${url}"]`)) {
+      if (fontName.startsWith("http://") || fontName.startsWith("https://")) {
+        fontUrl = fontName;
+      } else {
+        const formatted = fontName.replace(/\s+/g, "+");
+        fontUrl = `https://fonts.googleapis.com/css2?family=${formatted}:wght@${weights}&subset=${subsets}&display=swap`;
+      }
+
+      if (!document.querySelector(`link[href="${fontUrl}"]`)) {
         const link = document.createElement("link");
-        link.href = url;
+        link.href = fontUrl;
         link.rel = "stylesheet";
         document.head.appendChild(link);
+
+        return () => {
+          document.head.removeChild(link);
+        };
       }
     };
 
-    loadFont(fontFamily);
+    loadFont(font.name);
     if (font?.headers && font.headers !== font.name) {
-      loadFont(headerFontFamily);
+      loadFont(font.headers, true);
     }
-  }, [fontFamily, headerFontFamily, weights, subsets]);
+  }, [font, weights, subsets]);
 
   if (loading || !data) {
     return (
@@ -67,7 +87,7 @@ export default function RootLayout({
   const currentType = menuItems.find((item) =>
     pathname.includes(item.id)
   )?.type;
-  const section = data.sections.find((sec) => sec.type === currentType);
+  const section = data.sections?.find((sec) => sec.type === currentType);
   const currentIndex = menuItems.findIndex((item) => item.type === currentType);
   const nextItem = menuItems[currentIndex + 1];
   const prevItem = currentIndex > 0 ? menuItems[currentIndex - 1] : null;
@@ -96,9 +116,15 @@ export default function RootLayout({
       return (
         <div
           className="relative min-h-[50vh] flex items-center justify-center rounded-xl px-10 py-5"
-          style={{ backgroundColor: primaryColor, fontFamily }}
+          style={{
+            backgroundColor: primaryColor,
+            fontFamily: fontFamily,
+            direction: "rtl",
+          }}
         >
-          <h2 className="text-2xl font-bold text-black">No route match</h2>
+          <h2 className="text-2xl font-bold text-black">
+            هیچ مسیری مطابقت ندارد
+          </h2>
         </div>
       );
     }
@@ -106,7 +132,7 @@ export default function RootLayout({
     const hasMedia = section?.video || section?.img;
 
     return (
-      <div style={{ fontFamily }}>
+      <div style={{ fontFamily: fontFamily, direction: "rtl" }}>
         <div
           className={`relative min-h-[50vh] md:flex flex-row items-center justify-between rounded-xl gap-1 px-10 py-5 overflow-hidden ${
             hasMedia ? "block" : "md:flex"
@@ -130,7 +156,7 @@ export default function RootLayout({
           <div className="relative text-sm">
             <h1
               className="font-bold md:font-black text-display-lg lg:text-4xl text-3xl m-0"
-              style={{ fontFamily: headerFontFamily }}
+              style={{ fontFamily: fontFamily }}
             >
               {section?.title && (
                 <MDXRemote
@@ -165,7 +191,7 @@ export default function RootLayout({
               ) : section?.img ? (
                 <motion.img
                   src={section.img}
-                  alt="Overview Image"
+                  alt="تصویر کلی"
                   className="max-w-full h-auto rounded-lg shadow-lg max-h-[50vh]"
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -181,7 +207,10 @@ export default function RootLayout({
 
   return (
     <FontProvider font={data.brand.font}>
-      <div className="space-y-8" style={{ fontFamily }}>
+      <div
+        className="space-y-8"
+        style={{ fontFamily: fontFamily, direction: "rtl" }}
+      >
         {renderSectionContent()}
         {children}
         <footer className="bg-neutral-100 dark:bg-neutral-900 h-20 rounded-2xl font-bold px-4 items-center w-full flex justify-between">
@@ -199,7 +228,7 @@ export default function RootLayout({
               </div>
             </Link>
           ) : (
-            <span>End of sections</span>
+            <span>پایان بخش‌ها</span>
           )}
           {prevItem ? (
             <Link

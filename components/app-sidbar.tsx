@@ -14,7 +14,7 @@ import {
 import { useData } from "@/hooks/DataProvider";
 import { Skeleton } from "./ui/skeleton";
 import { useEffect, useState } from "react";
-import { MenuGroup, MenuItem } from "@/app/type";
+import { Font, MenuGroup, MenuItem } from "@/app/type";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
@@ -27,28 +27,24 @@ export function AppSidebar() {
   const { data, loading } = useData();
   const [groups, setGroups] = useState<SidebarGroup[]>([]);
   const pathname = usePathname();
-  const locale = pathname.split("/")[1] || "IR";
+  const locale = pathname.split("/")[1] || "ir";
+
+  const font: Font | undefined = data?.brand?.font;
+
+  const parseFontFamily = (fontName: string | undefined): string => {
+    if (!fontName) return "Roboto";
+    if (fontName.startsWith("http://") || fontName.startsWith("https://")) {
+      const url = new URL(fontName);
+      const family = url.searchParams.get("family") || "KalamehWebFaNum";
+      return family;
+    }
+    return fontName;
+  };
+
+  const fontFamily = parseFontFamily(font?.name);
 
   useEffect(() => {
-    if (!data?.brand?.font) return;
-
-    const { name, weights } = data.brand.font;
-    const fontUrl = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(
-      name
-    )}:wght@${weights?.join(";")}&&display=swap`;
-
-    const link = document.createElement("link");
-    link.href = fontUrl;
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
-
-    return () => {
-      document.head.removeChild(link);
-    };
-  }, [data]);
-
-  useEffect(() => {
-    if (!data || !data.menu) return;
+    if (!data || !data?.menu) return;
 
     const transformedGroups = Object.entries(data.menu).map(
       ([key, value]: [string, MenuGroup]) => ({
@@ -60,14 +56,8 @@ export function AppSidebar() {
     setGroups(transformedGroups);
   }, [data]);
 
-  const sidebarFontStyle = {
-    fontFamily: data?.brand?.font?.name
-      ? `'${data.brand.font.name}', sans-serif`
-      : "inherit",
-  };
-
   return (
-    <Sidebar className="py-4 border" style={sidebarFontStyle}>
+    <Sidebar className="py-4 border" style={{ fontFamily: fontFamily }}>
       {loading ? (
         <SidebarContent>
           <div className="px-4 mb-6">
@@ -92,7 +82,7 @@ export function AppSidebar() {
         </SidebarContent>
       ) : (
         <>
-          {(data?.brand.logo || data?.brand.darkLogo) && (
+          {(data?.brand?.logo || data?.brand?.darkLogo) && (
             <>
               <Image
                 src={data?.brand.logo || ""}
