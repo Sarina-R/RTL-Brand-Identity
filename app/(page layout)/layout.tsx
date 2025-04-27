@@ -23,34 +23,32 @@ export default function RootLayout({
   const localePrefix = pathSegments[0] || "ir";
   const mdxComponents = useMDXComponents1({});
 
-  const font: Font | undefined = data?.brand?.font;
+  const font = data?.brand?.font;
 
-  const parseFontFamily = (fontName: string | undefined): string => {
+  const parseFontFamily = (fontName?: string): string => {
     if (!fontName) return "Roboto";
     if (fontName.startsWith("http://") || fontName.startsWith("https://")) {
       const url = new URL(fontName);
-      const family = url.searchParams.get("family") || "KalamehWebFaNum";
-      return family;
+      return url.searchParams.get("family") || "KalamehWebFaNum";
     }
     return fontName;
   };
 
   const fontFamily = parseFontFamily(font?.name);
+  const headerFont = parseFontFamily(font?.headers);
   const weights = font?.weights?.join(";") ?? "400;700";
   const subsets = font?.subsets?.join(",") ?? "arabic";
 
   useEffect(() => {
-    if (!font?.name) return;
-
     const loadFont = (fontName: string) => {
-      let fontUrl: string;
+      if (!fontName) return;
 
-      if (fontName.startsWith("http://") || fontName.startsWith("https://")) {
-        fontUrl = fontName;
-      } else {
-        const formatted = fontName.replace(/\s+/g, "+");
-        fontUrl = `https://fonts.googleapis.com/css2?family=${formatted}:wght@${weights}&subset=${subsets}&display=swap`;
-      }
+      const fontUrl = fontName.startsWith("http")
+        ? fontName
+        : `https://fonts.googleapis.com/css2?family=${fontName.replace(
+            /\s+/g,
+            "+"
+          )}:wght@${weights}&subset=${subsets}&display=swap`;
 
       if (!document.querySelector(`link[href="${fontUrl}"]`)) {
         const link = document.createElement("link");
@@ -58,13 +56,11 @@ export default function RootLayout({
         link.rel = "stylesheet";
         document.head.appendChild(link);
 
-        return () => {
-          document.head.removeChild(link);
-        };
+        return () => document.head.removeChild(link);
       }
     };
 
-    loadFont(font.name);
+    loadFont(font?.name || "");
     if (font?.headers && font.headers !== font.name) {
       loadFont(font.headers);
     }
@@ -94,20 +90,16 @@ export default function RootLayout({
 
   function getContrastYIQ(hexColor: string): "black" | "white" {
     let color = hexColor.startsWith("#") ? hexColor.slice(1) : hexColor;
-
     if (color.length === 3) {
       color = color
         .split("")
         .map((c) => c + c)
         .join("");
     }
-
     const r = parseInt(color.slice(0, 2), 16);
     const g = parseInt(color.slice(2, 4), 16);
     const b = parseInt(color.slice(4, 6), 16);
-
     const yiq = (r * 299 + g * 587 + b * 114) / 1000;
-
     return yiq >= 128 ? "black" : "white";
   }
 
@@ -129,17 +121,17 @@ export default function RootLayout({
       );
     }
 
-    const hasMedia = section?.video || section?.img;
+    const hasMedia = section.video || section.img;
 
     return (
       <div style={{ fontFamily: fontFamily, direction: "rtl" }}>
         <div
-          className={`relative min-h-[50vh] md:flex flex-row items-center justify-between rounded-xl gap-1 px-10 py-5 overflow-hidden ${
+          className={`relative min-h-[50vh] md:flex items-center justify-between rounded-xl gap-1 px-10 py-5 overflow-hidden ${
             hasMedia ? "block" : "md:flex"
           }`}
           style={{ backgroundColor: primaryColor, color: textColor }}
         >
-          {section?.pattern && (
+          {section.pattern && (
             <motion.div
               className="absolute inset-0 opacity-0"
               style={{
@@ -156,17 +148,18 @@ export default function RootLayout({
           <div className="relative text-sm">
             <h1
               className="font-bold md:font-black text-display-lg lg:text-4xl text-3xl m-0"
-              style={{ fontFamily: fontFamily }}
+              style={{ fontFamily: headerFont }}
             >
-              {section?.title && (
+              {section.title && (
                 <MDXRemote
                   {...(section.title as MDXRemoteSerializeResult)}
                   components={mdxComponents}
                 />
               )}
             </h1>
+
             <h5 className="text-display-sm md:text-display-md m-0 mt-2 lg:mt-4">
-              {section?.description && (
+              {section.description && (
                 <MDXRemote
                   {...(section.description as MDXRemoteSerializeResult)}
                   components={mdxComponents}
@@ -177,7 +170,7 @@ export default function RootLayout({
 
           {hasMedia && (
             <div className="relative flex right-0 justify-end">
-              {section?.video ? (
+              {section.video ? (
                 <motion.video
                   src={section.video}
                   autoPlay
@@ -188,7 +181,7 @@ export default function RootLayout({
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, ease: "easeOut" }}
                 />
-              ) : section?.img ? (
+              ) : (
                 <motion.img
                   src={section.img}
                   alt="تصویر کلی"
@@ -197,7 +190,7 @@ export default function RootLayout({
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, ease: "easeOut" }}
                 />
-              ) : null}
+              )}
             </div>
           )}
         </div>
