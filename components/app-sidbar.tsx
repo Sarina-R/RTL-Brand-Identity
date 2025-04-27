@@ -30,6 +30,24 @@ export function AppSidebar() {
   const locale = pathname.split("/")[1] || "IR";
 
   useEffect(() => {
+    if (!data?.brand?.font) return;
+
+    const { name, weights } = data.brand.font;
+    const fontUrl = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(
+      name
+    )}:wght@${weights?.join(";")}&&display=swap`;
+
+    const link = document.createElement("link");
+    link.href = fontUrl;
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, [data]);
+
+  useEffect(() => {
     if (!data || !data.menu) return;
 
     const transformedGroups = Object.entries(data.menu).map(
@@ -42,14 +60,19 @@ export function AppSidebar() {
     setGroups(transformedGroups);
   }, [data]);
 
+  const sidebarFontStyle = {
+    fontFamily: data?.brand?.font?.name
+      ? `'${data.brand.font.name}', sans-serif`
+      : "inherit",
+  };
+
   return (
-    <Sidebar className="py-4 border">
+    <Sidebar className="py-4 border" style={sidebarFontStyle}>
       {loading ? (
         <SidebarContent>
           <div className="px-4 mb-6">
             <Skeleton className="h-10 w-32" />
           </div>
-
           {Array.from({ length: 3 }).map((_, index) => (
             <SidebarGroup key={index} className="p-3 px-6">
               <SidebarGroupLabel className="mb-2">
@@ -97,7 +120,7 @@ export function AppSidebar() {
                   {group.label}
                 </SidebarGroupLabel>
                 <SidebarGroupContent>
-                  <SidebarMenu className=" font-bold">
+                  <SidebarMenu className="font-bold">
                     {group.items.map((item) => (
                       <SidebarMenuItem key={item.id}>
                         <SidebarMenuButton asChild>

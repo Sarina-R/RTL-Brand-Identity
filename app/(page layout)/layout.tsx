@@ -108,7 +108,7 @@ export default function RootLayout({
     return (
       <div style={{ fontFamily }}>
         <div
-          className={`relative min-h-[50vh] md:flex flex-row items-center justify-start rounded-xl gap-4 px-10 py-5 overflow-hidden ${
+          className={`relative min-h-[50vh] md:flex flex-row items-center justify-between rounded-xl gap-1 px-10 py-5 overflow-hidden ${
             hasMedia ? "block" : "md:flex"
           }`}
           style={{ backgroundColor: primaryColor, color: textColor }}
@@ -127,7 +127,7 @@ export default function RootLayout({
             />
           )}
 
-          <div className="relative text-left">
+          <div className="relative text-sm">
             <h1
               className="font-bold md:font-black text-display-lg lg:text-4xl text-3xl m-0"
               style={{ fontFamily: headerFontFamily }}
@@ -150,7 +150,7 @@ export default function RootLayout({
           </div>
 
           {hasMedia && (
-            <div className="relative flex right-0 w-full justify-end">
+            <div className="relative flex right-0 justify-end">
               {section?.video ? (
                 <motion.video
                   src={section.video}
@@ -185,38 +185,37 @@ export default function RootLayout({
         {renderSectionContent()}
         {children}
         <footer className="bg-neutral-100 dark:bg-neutral-900 h-20 rounded-2xl font-bold px-4 items-center w-full flex justify-between">
-          {prevItem ? (
-            <Link
-              href={`/${localePrefix}/${prevItem.id}`}
-              className="flex gap-2 text-neutral-800 dark:text-neutral-200 hover:text-neutral-600"
-            >
-              <div className="pt-2">
-                <ChevronLeft size={32} />
-              </div>
-              <div>
-                <p className="font-light text-neutral-500 text-sm">Prev</p>
-                <p>{prevItem.title}</p>
-              </div>
-            </Link>
-          ) : (
-            <span></span>
-          )}
-
           {nextItem ? (
             <Link
               href={`/${localePrefix}/${nextItem.id}`}
               className="flex gap-2 text-right text-neutral-800 dark:text-neutral-200 hover:text-neutral-600"
             >
-              <div>
-                <p className="font-light text-neutral-500 text-sm">Next</p>
-                <p>{nextItem.title}</p>
-              </div>
               <div className="pt-2">
                 <ChevronRight size={32} />
+              </div>
+              <div>
+                <p className="font-light text-neutral-500 text-sm">بعدی</p>
+                <p>{nextItem.title}</p>
               </div>
             </Link>
           ) : (
             <span>End of sections</span>
+          )}
+          {prevItem ? (
+            <Link
+              href={`/${localePrefix}/${prevItem.id}`}
+              className="flex gap-2 text-neutral-800 dark:text-neutral-200 hover:text-neutral-600"
+            >
+              <div>
+                <p className="font-light text-neutral-500 text-sm">قبلی</p>
+                <p>{prevItem.title}</p>
+              </div>
+              <div className="pt-2">
+                <ChevronLeft size={32} />
+              </div>
+            </Link>
+          ) : (
+            <span></span>
           )}
         </footer>
       </div>

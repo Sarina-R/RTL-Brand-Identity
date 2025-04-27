@@ -1,11 +1,10 @@
 import { PaletteUsage as PaletteUsageType } from "@/app/type";
 import { MDXRemote } from "next-mdx-remote";
 import { useMDXComponents } from "@/mdx-component";
-import { Check, X } from "lucide-react";
+import { Check, Dot, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useFont } from "@/hooks/FontProvider";
 
-// Animation Variants
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -71,15 +70,19 @@ const PaletteUsage = ({ usage }: { usage: PaletteUsageType }) => {
           className="text-lg font-semibold mb-4 text-neutral-800 dark:text-neutral-200"
           style={{ fontFamily: headerFont }}
         >
-          Main Structure
+          ترکیبات اصلی
         </h3>
-        <ul className="list-disc pl-5 text-neutral-700 dark:text-neutral-300">
+        <ul className="pl-5 text-neutral-700 dark:text-neutral-300">
           {usage.mainStructure.map((item) => (
-            <motion.li key={item.id} variants={fadeUp} className="mb-2 text-sm">
-              {item.name} (Background:
+            <motion.li
+              key={item.id}
+              variants={fadeUp}
+              className="mb-2 flex text-xs sm:text-sm gap-1"
+            >
+              <Dot /> {item.name} (پس‌زمینه:
               <span
                 style={{ backgroundColor: item.background }}
-                className="px-[0.65rem] m-1 rounded border"
+                className="px-2 sm:px-[0.65rem] py-1 sm:py-[0.6rem] sm:max-w-max max-h-4 rounded border"
               />
               )
             </motion.li>
@@ -89,7 +92,7 @@ const PaletteUsage = ({ usage }: { usage: PaletteUsageType }) => {
 
       {/* Usage Cards */}
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+        className="grid grid-cols-2 lg:grid-cols-3 gap-4 text-xs sm:text-base"
         variants={staggerContainer}
       >
         {/* Correct Usage */}
@@ -105,17 +108,17 @@ const PaletteUsage = ({ usage }: { usage: PaletteUsageType }) => {
                 className="absolute bottom-6 font-semibold"
                 style={{ color: item.text }}
               >
-                This combination is legible and correct
+                این ترکیب خوانا و صحیح است.
               </p>
               <div className="absolute right-3 top-5">
                 <div
-                  className="flex gap-2 text-white text-sm font-bold items-center justify-center px-2 bg-green-600 rounded-3xl p-1"
+                  className="text-xs sm:text-sm flex gap-2 text-white font-bold items-center justify-center px-2 bg-green-600 rounded-3xl p-1"
                   aria-label="Correct usage"
                 >
-                  Correct
                   <div className="rounded-full bg-green-400 p-1">
                     <Check color="white" size={18} />
                   </div>
+                  درست
                 </div>
               </div>
             </div>
@@ -135,17 +138,17 @@ const PaletteUsage = ({ usage }: { usage: PaletteUsageType }) => {
                 className="absolute bottom-6 font-semibold"
                 style={{ color: item.text }}
               >
-                This combination is illegible and incorrect.
+                این ترکیب ناخوانا و اشتباه است.
               </p>
               <div className="absolute right-3 top-5">
                 <div
-                  className="flex gap-2 text-white text-sm font-bold items-center justify-center px-2 bg-red-600 rounded-3xl p-1"
+                  className="text-xs sm:text-sm flex gap-2 text-white font-bold items-center justify-center px-2 bg-red-600 rounded-3xl p-1"
                   aria-label="Incorrect usage"
                 >
-                  Incorrect
                   <div className="rounded-full bg-red-400 p-1">
                     <X color="white" size={18} />
                   </div>
+                  نادرست
                 </div>
               </div>
             </div>

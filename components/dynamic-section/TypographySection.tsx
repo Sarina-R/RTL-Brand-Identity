@@ -17,7 +17,7 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
   const mdxComponent1 = useMDXComponents1({});
   const mdxComponent = useMDXComponents({});
 
-  const [lastKey, setLastKey] = useState<string>("A");
+  const [lastKey, setLastKey] = useState<string>("آ");
   const [serializedItems, setSerializedItems] = useState<
     { mdx: MDXRemoteSerializeResult; bg: string; color: string }[]
   >([]);
@@ -50,20 +50,20 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
-      const isLatin = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?`~]$/.test(
-        event.key
-      );
+      const isPersian = /^[\u0600-\u06FF]$/.test(event.key);
+
       if (
         event.key.length === 1 &&
         !event.ctrlKey &&
         !event.altKey &&
         !event.metaKey &&
         event.key !== " " &&
-        isLatin
+        isPersian
       ) {
         setLastKey(event.key);
       }
     };
+
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, []);
@@ -179,7 +179,7 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
           {fontFeatureTitle && (
             <div
               style={{ fontFamily: headerFont }}
-              className="sticky top-15 h-full text-xl font-bold text-neutral-800 dark:text-neutral-200"
+              className="lg:sticky py-4 lg:py-0 lg:top-15 h-full text-xl font-bold text-neutral-800 dark:text-neutral-200"
             >
               <MDXRemote {...fontFeatureTitle} components={mdxComponent1} />
             </div>
@@ -290,9 +290,7 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
                                 : "bg-green-600"
                             }`}
                           >
-                            {example.status === "incorrect"
-                              ? "Incorrect"
-                              : "Correct"}
+                            {example.status === "incorrect" ? "نادرست" : "درست"}
                           </span>
                         </div>
 
