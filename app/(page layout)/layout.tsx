@@ -10,7 +10,6 @@ import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { FontProvider } from "@/hooks/FontProvider";
-import { Font } from "../type";
 
 export default function RootLayout({
   children,
