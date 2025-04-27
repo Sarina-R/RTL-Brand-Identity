@@ -42,7 +42,7 @@ export default function RootLayout({
   useEffect(() => {
     if (!font?.name) return;
 
-    const loadFont = (fontName: string, isHeader = false) => {
+    const loadFont = (fontName: string) => {
       let fontUrl: string;
 
       if (fontName.startsWith("http://") || fontName.startsWith("https://")) {
@@ -66,7 +66,7 @@ export default function RootLayout({
 
     loadFont(font.name);
     if (font?.headers && font.headers !== font.name) {
-      loadFont(font.headers, true);
+      loadFont(font.headers);
     }
   }, [font, weights, subsets]);
 
