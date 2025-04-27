@@ -148,27 +148,29 @@ const LogoSlider = ({ versions }: LogoSectionProps) => {
           </AnimatePresence>
         </motion.div>
 
-        <div className="flex items-center w-full mt-4">
+        <div className="flex items-center justify-between w-full px-2 mt-4">
           <div className="flex justify-center gap-4">
-            <motion.div variants={buttonVariants} whileTap="tap">
-              <Button size="icon" onClick={next}>
-                <ArrowLeft className="w-5 h-5" />
-              </Button>
-            </motion.div>
             <motion.div variants={buttonVariants} whileTap="tap">
               <Button size="icon" onClick={prev}>
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </motion.div>
+            <motion.div variants={buttonVariants} whileTap="tap">
+              <Button size="icon" onClick={next}>
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+            </motion.div>
           </div>
-          <motion.p
-            className="font-bold text-sm text-right w-full"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          >
-            {versions[index].name}
-          </motion.p>
+          <div>
+            <motion.p
+              className="font-bold text-sm text-right w-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              {versions[index].name}
+            </motion.p>
+          </div>
         </div>
       </div>
     </div>
