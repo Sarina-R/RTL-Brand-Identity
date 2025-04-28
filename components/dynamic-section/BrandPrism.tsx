@@ -96,7 +96,7 @@ const BrandManifesto = ({ section, primaryColor }: BrandPrismProps) => {
       <div className="lg:flex sm:p-6 p-2 justify-center items-center overflow-hidden">
         <svg
           viewBox="0 0 350 350"
-          className="sm:w-full w-[113%] sm:h-80 h-70 lg:w-3/5"
+          className="sm:w-full ml-4 w-[94%] sm:h-80 h-70 lg:w-3/5"
           style={
             {
               "--hexagon-bg": "rgba(255, 255, 255, 0.1)",
