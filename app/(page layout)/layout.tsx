@@ -166,7 +166,6 @@ export default function RootLayout({
               )}
             </h5>
           </div>
-
           {hasMedia && (
             <div className="relative flex right-0 justify-end">
               {section.video ? (

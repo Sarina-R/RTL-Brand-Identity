@@ -109,6 +109,37 @@ const ToneOfVoice = `
         </div>
 `;
 
+const Tagline = `<div className="mt-20 px-4 sm:px-8 lg:px-16">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+    <div className="space-y-4">
+      <h3 className="text-lg font-semibold">"از ربات‌ها لذت ببر!"</h3>
+      <ul className="space-y-2 list-disc">
+        <li>
+          <strong>نوآوری و تکنولوژی:</strong> لذت تجربه پیشرفت‌های خفن و به‌روز رباتیک رو جشن می‌گیره.
+        </li>
+        <li>
+          <strong>یادگیری جذاب:</strong> با تجربه‌های عملی، کنجکاوی و یادگیری رو تقویت می‌کنه.
+        </li>
+      </ul>
+    </div>
+
+    <div className="space-y-4">
+      <h3 className="text-lg font-semibold">"از زندگی لذت ببر!"</h3>
+      <ul className="space-y-2 list-disc">
+        <li>
+          <strong>زندگی بهتر:</strong> با رباتیک، کارها رو ساده‌تر و سریع‌تر انجام بده.
+        </li>
+        <li>
+          <strong>آینده روشن:</strong> با راه‌حل‌های هوشمند مبتنی بر هوش مصنوعی، چالش‌های جهانی رو حل می‌کنه.
+        </li>
+        <li>
+          <strong>همه‌گیر و در دسترس:</strong> کاری می‌کنه همه بتونن از نوآوری‌های رباتیک استفاده کنن.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>`;
+
 const Mascot = `<div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-2xl p-6 sm:p-8 bg-[#FDB813]">
           <div className="absolute inset-0 bg-[url('https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi//18.png')] bg-cover bg-center bg-no-repeat opacity-5 rounded-2xl"></div>
@@ -426,7 +457,7 @@ const data = {
             title: "لحن و ارزش‌های کلامی",
             type: "tone_of_voice",
           },
-          // { id: "tagline", title: "Tagline", type: "tagline" },
+          { id: "tagline", title: "تگ‌لاین", type: "tagline" },
         ],
       },
       "هویت بصری": {
@@ -569,19 +600,18 @@ const data = {
           style: 1,
         },
       },
-      // {
-      //   type: "tagline",
-      //   title: "Tagline",
-      //   description: "",
-      //   pattern:
-      //     "https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/FIRA%20CUP%202025%20BRAND%20BOOK%20(7).svg",
-      //   img: "",
-      //   items: {
-      //     MDXComponent: item1,
-      //     title: "**TITLE** If there is",
-      //     desc: "some desc :)",
-      //   },
-      // },
+      {
+        type: "tagline",
+        title: "تگ‌لاین",
+        description: "",
+        pattern:
+          "https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/FIRA%20CUP%202025%20BRAND%20BOOK%20(7).svg",
+        img: "",
+        items: {
+          MDXComponent: Tagline,
+          title: "از ربات‌ها لذت ببر، از زندگی لذت ببر!",
+        },
+      },
       {
         type: "design_principles",
         title: "اصول دیزاین",
@@ -607,12 +637,12 @@ const data = {
                           Strategic design in FIRA Iran is in service of communication and business growth.
                           The foundation of strategic design stems from upstream strategies and loops through feedback and iteration to complete and refine one another.
               `,
-              svg: "https://cdn.alibaba.ir/cms/uploads/design_principles_2_cd79d2f6e8.svg",
+              svg: "https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/icons/Copy%20of%20FIRA%20CANADA%20BRAND%20BOOK%20(3).png",
             },
             {
               title: "دیزاین خلاقانه",
               description: `طراحی خلاقانه مرزهای نوآوری را جابجا می کند و دید زیبایی شناختی را با نیازهای کاربر همسو می کند`,
-              svg: "https://cdn.alibaba.ir/cms/uploads/design_principles_2_cd79d2f6e8.svg",
+              svg: "https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/icons/Copy%20of%20FIRA%20CANADA%20BRAND%20BOOK%20(2).png",
             },
           ],
         },
@@ -893,23 +923,25 @@ const data = {
             desc: "در طراحی فونت فیرا ایران، علاوه بر ویژگی های اصلی، مجموعه ای از ویژگی های تکمیلی را پیش بینی کرده ایم که تایپوگرافی را غنی می کند. این ویژگی‌ها عبارتند از: لیگاتورها، فرم‌های متناوب، ضربه‌ها، مجموعه‌های سبک، و اعداد متنی و جدولی.",
             componentItems: [
               {
-                text: "**استرداد** <br/> به راحتی",
+                text: '<p className="font-bold">آینده رو بساز</p>',
                 color: "#000000",
                 bg: "#FDB813",
               },
               {
-                text: "لحظه آخر <br/> **456$**",
+                text: 'تیم‌های جهانی رو <br/> <p className="font-bold mt-6">به چالش بکش</p>',
                 color: "#000000",
                 bg: "#FFFFFF",
               },
               {
-                text: `<p className="text-[#FDB813]">آمستردام </p> <br/>
-                   <p className="text-white font-bold">رفت و برگشت</p>`,
+                text: '<p className="text-[#FDB813]">فیرا ۲۰۲۵</p> <br/> <p className="text-white font-bold">به‌زودی</p>',
                 color: "",
                 bg: "#000000",
               },
               {
-                text: "از **آمستردام** به **پاریس**",
+                text: `<div className="space-y-6">
+            <div>از **نوآوری**</div>
+            <div>تا **جایزه بزرگ**</div>
+          </div>`,
                 color: "#000000",
                 bg: "#FFFFFF",
               },
