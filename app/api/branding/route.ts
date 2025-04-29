@@ -729,8 +729,12 @@ const data = {
             title: "استفاده در کنار لوگوی برندهای دیگر",
             desc: "هنگام استفاده از لوگوی FIRA ایران در کنار سایر لوگوهای برند، معامله به این صورت است: اگر لوگوی دوم عمودی است، با نسخه عمودی آرم فیرا ایران همراه شوید. اگر افقی است، از فیرا ایران افقی استفاده کنید. برای حفظ تعادل، مطمئن شوید که ارتفاع مونوگرام فیرا ایران با بخش گرافیکی لوگوی دوم در هر دو مورد مطابقت دارد. حال اگر لوگوی دوم فقط یک لوگو تایپ است (بدون گرافیک فانتزی) از لوگوی افقی فیرا ایران استفاده کنید. در این صورت، ارتفاع هر دو نشان‌واره باید یکسان باشد.<br/>همیشه آرم فیرا ایران را در سمت راست و بالای لوگوی دوم بزنید. قرار دادن آن در سمت چپ یا زیر لوگوهای دیگر؟ نه مجاز نیست",
             svg: [
-              "https://cdn.alibaba.ir/cms/uploads/co_logo_2_dadfc63297.svg",
-              "https://cdn.alibaba.ir/cms/uploads/co_logo_3_ed6df93726.svg",
+              "https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/co-branding/FIRA%20CUP%202025%20BRAND%20BOOK%20(12).svg",
+              "https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/co-branding/6.svg",
+            ],
+            darkSvg: [
+              "https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/co-branding/FIRA%20CUP%202025%20BRAND%20BOOK%20(13).svg",
+              "https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/co-branding/6.svg",
             ],
           },
         },
@@ -910,8 +914,9 @@ const data = {
           "https://kbgnpdzggogidjwifiuq.supabase.co/storage/v1/object/public/harchi/FIRA%20CUP%202025%20BRAND%20BOOK%20(7).svg",
         img: "",
         font: {
-          name: "KALAMEH",
-          weights: [500, 700],
+          name: "https://db.onlinewebfonts.com/c/eba1f76fb362790bbfa2f7a343904394?family=KalamehWebFaNum",
+          headers: "https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic",
+          weights: [400, 500, 700],
           subsets: ["latin", "latin-ext"],
         },
         items: {

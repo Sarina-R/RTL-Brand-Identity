@@ -55,7 +55,7 @@ const LogoBackground = ({ data }: Props) => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           style={{ fontFamily: headerFont }}
         >
-          In Background
+          زمینه‌های مجاز
         </motion.h2>
         <ul className="list-disc pr-5 space-y-2 text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
           {data.listItems.map((item, i) => (

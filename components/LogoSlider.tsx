@@ -95,7 +95,7 @@ const LogoSlider = ({ versions }: LogoSectionProps) => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           style={{ fontFamily: headerFont }}
         >
-          Versions
+          ورژن‌های لوگوی فیرا ایران
         </motion.h2>
         <ul className="space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
           {mdxSources.map((mdx, i) => (

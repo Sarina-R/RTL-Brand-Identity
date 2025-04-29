@@ -15,6 +15,7 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
   const mdxComponent1 = useMDXComponents1({});
   const mdxComponent = useMDXComponents({});
   const sampleText = section.items.weights.sampleText;
+  const { headerFont, bodyFont } = useFont(); // Correctly use the useFont hook
 
   const [lastKey, setLastKey] = useState<string>("آ");
   const [serializedItems, setSerializedItems] = useState<
@@ -45,7 +46,6 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
   const [principlesSections, setPrinciplesSections] = useState<
     TypographyPrinciplesSection[]
   >([]);
-  const { headerFont } = useFont();
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -135,7 +135,10 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
               <MDXRemote {...mainTitle} components={mdxComponent1} />
             )}
           </div>
-          <div className="text-neutral-700 dark:text-neutral-300 leading-7">
+          <div
+            style={{ fontFamily: bodyFont }}
+            className="text-neutral-700 dark:text-neutral-300 leading-7"
+          >
             {mainDesc && <MDXRemote {...mainDesc} components={mdxComponent1} />}
           </div>
         </div>
@@ -144,28 +147,25 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
             <div className="flex-1 max-h-44 sm:min-h-52 p-6 bg-black dark:bg-white dark:text-black text-white rounded-2xl flex flex-col items-center justify-center">
               <p
                 className="text-7xl sm:text-9xl font-bold"
-                style={{ fontFamily: section.font.headers }}
+                style={{ fontFamily: headerFont }}
               >
                 {lastKey}
               </p>
-              <p className="text-sm font-bold pt-8">{section.font.headers}</p>
+              <p className="text-sm font-bold pt-8">فونت عنوان‌ها</p>
             </div>
             <div className="flex-1 max-h-44 sm:min-h-52 p-6 bg-black dark:bg-white dark:text-black text-white rounded-2xl flex flex-col items-center justify-center">
               <p
                 className="text-7xl sm:text-9xl font-bold"
-                style={{ fontFamily: section.font.name }}
+                style={{ fontFamily: bodyFont }}
               >
                 {lastKey}
               </p>
-              <p className="text-sm font-bold pt-8">{section.font.name}</p>
+              <p className="text-sm font-bold pt-8">فونت بدنه</p>
             </div>
           </div>
         ) : (
           <div className="flex-1 min-h-52 p-6 bg-black dark:bg-white dark:text-black text-white rounded-2xl flex flex-col items-center justify-center">
-            <p
-              className="text-9xl font-bold"
-              style={{ fontFamily: section.font.name }}
-            >
+            <p className="text-9xl font-bold" style={{ fontFamily: bodyFont }}>
               {lastKey}
             </p>
             <p className="text-sm font-bold pt-8">{section.font.name}</p>
@@ -178,13 +178,16 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
           {fontFeatureTitle && (
             <div
               style={{ fontFamily: headerFont }}
-              className="lg:sticky py-4 lg:py-0 lg:top-15 h-full text-xl font-bold text-neutral-800 dark:text-neutral-200"
+              className="lg:sticky py-4 F lg:py-0 lg:top-15 h-full text-xl font-bold text-neutral-800 dark:text-neutral-200"
             >
               <MDXRemote {...fontFeatureTitle} components={mdxComponent1} />
             </div>
           )}
           {fontFeatureDesc && (
-            <div className="text-neutral-700 dark:text-neutral-300 leading-7">
+            <div
+              style={{ fontFamily: bodyFont }}
+              className="text-neutral-700 dark:text-neutral-300 leading-7"
+            >
               <MDXRemote {...fontFeatureDesc} components={mdxComponent1} />
             </div>
           )}
@@ -194,7 +197,11 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
             <div
               key={index}
               className="rounded-xl text-xl text-center border min-h-40 h-full flex flex-col items-center justify-center"
-              style={{ backgroundColor: item.bg, color: item.color }}
+              style={{
+                backgroundColor: item.bg,
+                color: item.color,
+                fontFamily: bodyFont,
+              }}
             >
               <MDXRemote {...item.mdx} components={mdxComponent1} />
             </div>
@@ -210,7 +217,7 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
                 <p
                   key={weight}
                   className="text-2xl text-neutral-800 dark:text-neutral-200"
-                  style={{ fontWeight: weight }}
+                  style={{ fontWeight: weight, fontFamily: bodyFont }}
                 >
                   {sampleText}
                 </p>
@@ -227,7 +234,9 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
               </h2>
             )}
             {weightsDesc && (
-              <MDXRemote {...weightsDesc} components={mdxComponent1} />
+              <div style={{ fontFamily: bodyFont }}>
+                <MDXRemote {...weightsDesc} components={mdxComponent1} />
+              </div>
             )}
           </div>
         </div>
@@ -242,7 +251,10 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
             >
               <MDXRemote {...principlesTitle} components={mdxComponent1} />
             </h2>
-            <div className="text-neutral-700 dark:text-neutral-300 leading-7">
+            <div
+              style={{ fontFamily: bodyFont }}
+              className="text-neutral-700 dark:text-neutral-300 leading-7"
+            >
               {principlesDesc && (
                 <MDXRemote {...principlesDesc} components={mdxComponent1} />
               )}
@@ -268,7 +280,10 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
                     >
                       <MDXRemote {...sec.subtitle} components={mdxComponent1} />
                     </h2>
-                    <div className="text-neutral-600 dark:text-neutral-300 text-sm leading-7">
+                    <div
+                      style={{ fontFamily: bodyFont }}
+                      className="text-neutral-600 dark:text-neutral-300 text-sm leading-7"
+                    >
                       <MDXRemote {...sec.content} components={mdxComponent1} />
                     </div>
                   </div>
@@ -294,7 +309,10 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
                         </div>
 
                         {example.mdx ? (
-                          <div className="text-sm text-right text-neutral-700 dark:text-neutral-300 leading-7">
+                          <div
+                            style={{ fontFamily: bodyFont }}
+                            className="text-sm text-right text-neutral-700 dark:text-neutral-300 leading-7"
+                          >
                             <MDXRemote
                               {...example.mdx}
                               components={mdxComponent1}
@@ -320,7 +338,9 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
       </div>
 
       {customMDXComponent && (
-        <MDXRemote {...customMDXComponent} components={mdxComponent} />
+        <div style={{ fontFamily: bodyFont }}>
+          <MDXRemote {...customMDXComponent} components={mdxComponent} />
+        </div>
       )}
     </section>
   );
