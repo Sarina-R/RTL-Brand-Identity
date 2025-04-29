@@ -15,7 +15,7 @@ const TypographySection: React.FC<TypographySectionProps> = ({ section }) => {
   const mdxComponent1 = useMDXComponents1({});
   const mdxComponent = useMDXComponents({});
   const sampleText = section.items.weights.sampleText;
-  const { headerFont, bodyFont } = useFont(); // Correctly use the useFont hook
+  const { headerFont, bodyFont } = useFont();
 
   const [lastKey, setLastKey] = useState<string>("آ");
   const [serializedItems, setSerializedItems] = useState<
